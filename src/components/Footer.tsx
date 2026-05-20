@@ -9,9 +9,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">و</span>
-              </div>
+              <img src="/wassal-logo-200.webp" alt="وَصَّال كوم" className="w-11 h-11 rounded-xl object-contain" />
               <span className="text-xl font-bold gradient-text">وَصَّال كوم</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-md">
