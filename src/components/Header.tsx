@@ -10,9 +10,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">و</span>
-            </div>
+            <img src="/wassal-logo-200.webp" alt="وَصَّال كوم" className="w-11 h-11 rounded-xl object-contain" />
             <div>
               <span className="text-lg font-bold gradient-text">وَصَّال</span>
               <span className="text-xs text-gray-400 block -mt-1">للتسويق الرقمي</span>
