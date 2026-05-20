@@ -20,8 +20,12 @@ export default function Home() {
               <span className="text-gray-300 text-xs">منصة يمنية للتسويق الرقمي</span>
             </div>
 
+            <div className="mb-6">
+              <img src="/wassal-logo-400.webp" alt="وَصَّال كوم للتسويق الرقمي" className="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-2xl object-contain" />
+            </div>
+
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 leading-tight">
-              <span className="gradient-text">وَصَّال</span>
+              <span className="gradient-text">وَصَّال كوم</span>
               <br />
               <span className="text-white">وصّل رسالتك للعالم</span>
             </h1>
