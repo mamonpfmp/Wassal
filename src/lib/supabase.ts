@@ -58,7 +58,21 @@ export const stores: Store[] = [
   },
 ];
 
-const PLACEHOLDER_IMG = 'https://images.unsplash.com/photo-1560472355-536de3962603?auto=format&fit=crop&w=400&q=80';
+const PLACEHOLDER_IMG = 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80';
+const MIRA_SITE = 'https://mirashop.mamonpfmp.workers.dev';
+
+// Resolve image: handle base64, relative paths (/assets/...), full URLs, and fallback
+function resolveImage(img: string | null | undefined, storeUrl?: string): string {
+  if (!img || img.trim() === '') return PLACEHOLDER_IMG;
+  // base64 data URIs — use as-is (they are real product photos)
+  if (img.startsWith('data:')) return img;
+  // Relative asset paths — prepend the store origin
+  if (img.startsWith('/')) return (storeUrl || MIRA_SITE) + img;
+  // Full URL
+  if (img.startsWith('http')) return img;
+  // Unknown format
+  return PLACEHOLDER_IMG;
+}
 
 // Fetch products from Mira Shop
 async function fetchMiraProducts(): Promise<Product[]> {
@@ -75,7 +89,7 @@ async function fetchMiraProducts(): Promise<Product[]> {
     price: p.price || 0,
     category: p.category || 'عام',
     description: p.description || '',
-    image: (p.image && !p.image.startsWith('data:')) ? p.image : PLACEHOLDER_IMG,
+    image: resolveImage(p.image, MIRA_SITE),
     storeId: 'mira' as const,
     createdAt: p.created_at || '',
   }));
@@ -96,7 +110,7 @@ async function fetchHthProducts(): Promise<Product[]> {
     price: p.price || 0,
     category: p.cat || 'ساعات',
     description: p.description || '',
-    image: (p.img && !p.img.startsWith('data:')) ? p.img : PLACEHOLDER_IMG,
+    image: resolveImage(p.img, stores[1].url),
     storeId: 'hth' as const,
     createdAt: p.created_at || '',
   }));
