@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import ServiceDetail from './pages/ServiceDetail';
+import Products from './pages/Products';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/services/:categorySlug" element={<Services />} />
             <Route path="/service/:id" element={<ServiceDetail />} />
+            <Route path="/products" element={<Products />} />
           </Routes>
         </main>
         <Footer />
