@@ -21,6 +21,7 @@ export default function Header() {
           <nav className="hidden md:flex items-center gap-8">
             <Link to="/" className="text-gray-300 hover:text-white transition-colors text-sm font-medium">الرئيسية</Link>
             <Link to="/services" className="text-gray-300 hover:text-white transition-colors text-sm font-medium">الخدمات</Link>
+            <Link to="/products" className="text-gray-300 hover:text-white transition-colors text-sm font-medium">المنتجات</Link>
             <a href="#categories" className="text-gray-300 hover:text-white transition-colors text-sm font-medium">التصنيفات</a>
             <a href="#how-it-works" className="text-gray-300 hover:text-white transition-colors text-sm font-medium">كيف يعمل</a>
           </nav>
@@ -50,6 +51,7 @@ export default function Header() {
             <nav className="flex flex-col gap-3">
               <Link to="/" onClick={() => setMenuOpen(false)} className="text-gray-300 hover:text-white px-2 py-2">الرئيسية</Link>
               <Link to="/services" onClick={() => setMenuOpen(false)} className="text-gray-300 hover:text-white px-2 py-2">الخدمات</Link>
+              <Link to="/products" onClick={() => setMenuOpen(false)} className="text-gray-300 hover:text-white px-2 py-2">المنتجات 🛍️</Link>
               <a href="#categories" onClick={() => setMenuOpen(false)} className="text-gray-300 hover:text-white px-2 py-2">التصنيفات</a>
               <a href="#how-it-works" onClick={() => setMenuOpen(false)} className="text-gray-300 hover:text-white px-2 py-2">كيف يعمل</a>
               <Link to="/services" onClick={() => setMenuOpen(false)} className="gradient-bg text-white px-5 py-2 rounded-lg text-sm font-medium text-center mt-2">
