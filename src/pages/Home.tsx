@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom';
 import ServiceCard from '../components/ServiceCard';
+import ProductCard from '../components/ProductCard';
 import { categories, services, WHATSAPP_NUMBER } from '../data/services';
+import { useAllProducts } from '../hooks/useProducts';
+import { stores } from '../lib/supabase';
 
 export default function Home() {
   const featuredServices = services.slice(0, 6);
+  const { products, loading: productsLoading } = useAllProducts();
+  const featuredProducts = products.slice(0, 8);
 
   return (
     <div>
@@ -106,6 +111,58 @@ export default function Home() {
           <div className="text-center mt-8 sm:hidden">
             <Link to="/services" className="text-wassal-orange font-medium">عرض جميع الخدمات ←</Link>
           </div>
+        </div>
+      </section>
+
+      {/* Partner Stores */}
+      <section className="py-16 sm:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl font-black text-white mb-3">🏪 متاجرنا الشريكة</h2>
+            <p className="text-gray-400">تصفح منتجات متاجرنا مباشرة من وَصَّال</p>
+          </div>
+
+          {/* Store Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+            {stores.map(store => {
+              const count = products.filter(p => p.storeId === store.id).length;
+              return (
+                <Link key={store.id} to="/products"
+                  className="bg-[#1a1030] rounded-2xl p-6 border border-white/5 card-glow transition-all hover:-translate-y-1 group">
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="w-14 h-14 rounded-xl flex items-center justify-center text-3xl" style={{ backgroundColor: store.color + '20' }}>
+                      {store.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-white font-bold text-lg group-hover:text-wassal-orange transition-colors">{store.name}</h3>
+                      <p className="text-gray-500 text-xs">{count > 0 ? `${count} منتج` : 'جاري التحميل...'}</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-400 text-sm leading-relaxed">{store.description}</p>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Featured Products */}
+          {productsLoading ? (
+            <div className="text-center py-10">
+              <div className="animate-spin text-3xl mb-2">⏳</div>
+              <p className="text-gray-500 text-sm">جاري تحميل المنتجات...</p>
+            </div>
+          ) : featuredProducts.length > 0 ? (
+            <>
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="text-xl font-black text-white">أحدث المنتجات</h3>
+                <Link to="/products" className="text-wassal-orange text-sm font-medium hover:underline">
+                  عرض الكل ({products.length}) ←
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {featuredProducts.map(p => <ProductCard key={`${p.storeId}-${p.id}`} product={p} />)}
+              </div>
+            </>
+          ) : null}
         </div>
       </section>
 
